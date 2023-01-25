@@ -3,10 +3,8 @@ class heap:
         input_array.insert(0,0)
         self.input_array=input_array
         self.length=len(self.input_array)
-        for i in reversed(range(2,self.length)):
-            parent=i//2
-            if self.input_array[parent] < self.input_array[i]:
-                self.input_array[i],self.input_array[parent] = self.input_array[parent],self.input_array[i]
+        for i in reversed(range(1,self.length//2)):
+            self.heapify_down(i)
 
     def heapify_up(self,i):
         if self.input_array[2*i]>self.input_array[2*i+1]:
@@ -52,8 +50,9 @@ class heap:
 
 input_array=list(map(int, input().split()))
 my_heap=heap(input_array)
+print(my_heap.arrayrobedeman())
 my_heap.get_max()
-my_heap.delete_max()
+my_heap.pop_max()
 print(my_heap.arrayrobedeman())
 
 
