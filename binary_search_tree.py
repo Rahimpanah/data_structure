@@ -91,6 +91,10 @@ class binary_tree:
                 delete_node.parent.right_children=None
             else:
                 delete_node.parent.left_children=None
+        elif delete_node.left_children != None and delete_node.right_children != None:
+            successor = self.find_successor(delete_node)
+            delete_node.value = successor.value
+            self.final_delete(successor)
         elif delete_node.left_children!=None:
             if delete_node==self.root:
                 delete_node.left_children.parent=None
@@ -111,10 +115,6 @@ class binary_tree:
                 else:
                     delete_node.parent.left_children=delete_node.right_children
                 delete_node.right_children.parent=delete_node.parent
-        else:
-            successor=self.find_successor(delete_node)
-            delete_node.value=successor.value
-            self.final_delete(successor)
         return
 
 input_elements=[4,10,12,21,4,24]
